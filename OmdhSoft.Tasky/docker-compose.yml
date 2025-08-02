@@ -1,0 +1,27 @@
+services:
+  omdhsoft.modular.tasky.api:
+    image: ${DOCKER_REGISTRY-}omdhsofttaskytaskyapi
+    container_name: omdhsoft.modular.tasky.api
+    build:
+      context: .
+      dockerfile: src/api/OmdhSoft.Tasky.Tasky.Api/Dockerfile
+    environment:
+      - ConnectionStrings__TaskyDb=Server=taskymodular.database;Database=TaskyDb;User=sa;Password=omdh_pass;TrustServerCertificate=True;
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5000:8080"
+      - "5001:8081"
+
+  taskymodular.database:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: taskymodular.database
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=omdh_pass
+    volumes:
+      - tasky_data:/var/opt/mssql
+    ports:
+      - "1435:1433"
+
+volumes:
+  tasky_data:
