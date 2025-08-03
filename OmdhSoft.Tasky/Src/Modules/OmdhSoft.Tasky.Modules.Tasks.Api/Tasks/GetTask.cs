@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using OmdhSoft.Tasky.Modules.Tasks.Api.Database;
+using OmdhSoft.Tasky.Modules.Tasks.Api.Tasks.ValueObjects;
 
 namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks
 {
@@ -19,7 +20,7 @@ namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks
             app.MapGet("/tasks/{id:guid}", async (Guid id, TaskyDbContext context) =>
                 {
                     TaskResponse? task = await context.Tasks
-                        .Where(e => e.Id == id)
+                        .Where(e => e.Id == (TaskId)id)
                         .Select(e => new TaskResponse(
                             e.Id,
                             e.Title,
