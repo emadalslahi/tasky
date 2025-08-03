@@ -13,7 +13,8 @@ builder.Services.AddSwaggerGen(c =>
         Title = "Tasky API",
         Version = "v1"
     });
-}); builder.Services.AddTasksModule(builder.Configuration);
+}); 
+builder.Services.AddTasksModule(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmdhSoft.Tasky.Tasky.Api", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasks", "Tasks", "{262BD3EE-4B0B-4386-8D34-7B23A0B89AF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmdhSoft.Tasky.Modules.Tasks.Api", "OmdhSoft.Tasky.Modules.Tasks.Api\OmdhSoft.Tasky.Modules.Tasks.Api.csproj", "{A9139C51-3799-44AF-8159-2CE2710B1231}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmdhSoft.Tasky.Modules.Tasks.Api", "Src\modules\OmdhSoft.Tasky.Modules.Tasks.Api\OmdhSoft.Tasky.Modules.Tasks.Api.csproj", "{A9139C51-3799-44AF-8159-2CE2710B1231}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E505E94E-0429-45B1-B70C-7D0C48E25651}"
 EndProject
