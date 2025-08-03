@@ -13,18 +13,18 @@ namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks
         {
             app.MapPost("/tasks", async (CreateTaskRequest request, TaskyDbContext context) =>
             {
-                var @task = Task.Create(
+                var task = Task.Create(
                     request.Title,
                     request.Description,
                     request.Priority,
                     request.AssignedToUserId ?? Guid.Empty, // Assuming this is the user creating the task
                     Guid.NewGuid() // Placeholder for TaskListId, replace with actual logic
                 );
-                context.Tasks.Add(@task);
+                context.Tasks.Add(task);
                 await context.SaveChangesAsync();
                 return Results.Ok(task.Id);
 
-            }).WithTags(Tags.Tasks) ;
+            }).WithTags(Tags.Tasks);
         }
 
     }
