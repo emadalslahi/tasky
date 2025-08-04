@@ -2,7 +2,7 @@ using System;
 
 namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks.ValueObjects;
 
-public readonly record struct TaskId
+public sealed record TaskId
 {
     public Guid Value { get; }
 

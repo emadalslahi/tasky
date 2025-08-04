@@ -16,9 +16,7 @@ namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks
                 var task = Task.Create(
                     request.Title,
                     request.Description,
-                    request.Priority,
-                    request.AssignedToUserId ?? Guid.Empty, // Assuming this is the user creating the task
-                    Guid.NewGuid() // Placeholder for TaskListId, replace with actual logic
+                    request.Priority
                 );
                 context.Tasks.Add(task);
                 await context.SaveChangesAsync();

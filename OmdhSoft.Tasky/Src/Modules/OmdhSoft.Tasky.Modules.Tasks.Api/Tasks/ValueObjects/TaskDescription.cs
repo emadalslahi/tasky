@@ -1,6 +1,6 @@
 namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks.ValueObjects;
 
-public sealed class TaskDescription
+public sealed record TaskDescription
 {
     public string Value { get; }
 
