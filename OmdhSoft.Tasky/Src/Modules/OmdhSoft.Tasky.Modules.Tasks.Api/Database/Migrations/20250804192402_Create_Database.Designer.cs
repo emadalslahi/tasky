@@ -12,7 +12,7 @@ using OmdhSoft.Tasky.Modules.Tasks.Api.Database;
 namespace OmdhSoft.Tasky.Modules.Tasks.Api.Database.Migrations
 {
     [DbContext(typeof(TaskyDbContext))]
-    [Migration("20250802182816_Create_Database")]
+    [Migration("20250804192402_Create_Database")]
     partial class Create_Database
     {
         /// <inheritdoc />
@@ -29,7 +29,6 @@ namespace OmdhSoft.Tasky.Modules.Tasks.Api.Database.Migrations
             modelBuilder.Entity("OmdhSoft.Tasky.Modules.Tasks.Api.Tasks.Task", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("id");
 
@@ -65,7 +64,7 @@ namespace OmdhSoft.Tasky.Modules.Tasks.Api.Database.Migrations
                         .HasColumnType("int")
                         .HasColumnName("priority");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
                         .HasColumnType("int")
                         .HasColumnName("status");
 

@@ -26,7 +26,6 @@ namespace OmdhSoft.Tasky.Modules.Tasks.Api.Database.Migrations
             modelBuilder.Entity("OmdhSoft.Tasky.Modules.Tasks.Api.Tasks.Task", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("id");
 
@@ -62,7 +61,7 @@ namespace OmdhSoft.Tasky.Modules.Tasks.Api.Database.Migrations
                         .HasColumnType("int")
                         .HasColumnName("priority");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
                         .HasColumnType("int")
                         .HasColumnName("status");
 

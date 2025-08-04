@@ -1,6 +1,6 @@
 namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks;
 
-public interface IAuditable<TId>
+public interface IAuditable<TKey>
 {
-    TId Id { get; }
+    TKey Id { get; }
 }

@@ -5,6 +5,7 @@ namespace OmdhSoft.Tasky.Tasky.Api.Extensions
 {
    internal static class MigrationExtensions
     {
+
         internal static void ApplayMigrations(this IApplicationBuilder app)
         {
             using IServiceScope scope = app.ApplicationServices.CreateScope();

@@ -9,4 +9,15 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.7" />
   </ItemGroup>
 
+
+	<ItemGroup>
+	  <Compile Remove="Database\Migrations\20250802182816_Create_Database.cs" />
+	  <Compile Remove="Database\Migrations\20250802182816_Create_Database.Designer.cs" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Folder Include="Database\Migrations\" />
+	</ItemGroup>
+
 </Project>
