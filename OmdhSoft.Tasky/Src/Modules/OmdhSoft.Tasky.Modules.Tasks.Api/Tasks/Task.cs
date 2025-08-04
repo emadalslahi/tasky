@@ -1,58 +1,44 @@
 using System;
-using System.Collections.Generic;
 using OmdhSoft.Tasky.Modules.Tasks.Api.Tasks.Events;
 using OmdhSoft.Tasky.Modules.Tasks.Api.Tasks.ValueObjects;
 
 namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks
 {
-    public class Task : IFullAuditableWithEvent<TaskId>
+    public class Task : FullAuditableWithEventEntity<TaskId>
     {
-        public TaskId Id { get; private set; } = TaskId.New();
-        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
-        public DateTime? UpdatedAt { get; private set; }
-        public DateTime? DeletedAt { get; private set; }
-        public Guid? DeletedByUserId { get; private set; }
-        public Guid? UpdatedByUserId { get; private set; }
         public TaskTitle Title { get; private set; }
         public TaskDescription Description { get; private set; }
         public TaskPriority Priority { get; private set; }
         public TaskStatus Status { get; private set; }
         public DateTime? DueDate { get; private set; }
-        public Guid CreatedByUserId { get; private set; }
         public Guid? AssignedToUserId { get; private set; }
-
-        private readonly List<IDomainEvent> _domainEvents = new();
-        public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
         private Task() { }
 
-        private Task(TaskTitle title, TaskDescription description, TaskPriority priority, Guid createdByUserId, Guid taskListId)
+        private Task(TaskTitle title, TaskDescription description, TaskPriority priority)
         {
+            Id = TaskId.New();
             Title = title;
             Description = description;
             Priority = priority;
-            CreatedByUserId = createdByUserId;
             Status = TaskStatus.Pending;
-            CreatedAt = DateTime.UtcNow;
             AddDomainEvent(new TaskCreatedEvent(Id, Title));
         }
 
-        public static Task Create(TaskTitle title, TaskDescription description, TaskPriority priority, Guid createdByUserId, Guid taskListId)
+        public static Task Create(TaskTitle title, TaskDescription description, TaskPriority priority)
         {
-            return new Task(title, description, priority, createdByUserId, taskListId);
+            return new Task(title, description, priority);
         }
 
-        public void Update(TaskTitle title, TaskDescription description, TaskPriority priority, Guid updatedByUserId)
+        public void Update(TaskTitle title, TaskDescription description, TaskPriority priority)
         {
             Title = title;
             Description = description;
             Priority = priority;
-            UpdatedAt = DateTime.UtcNow;
-            UpdatedByUserId = updatedByUserId;
             AddDomainEvent(new TaskUpdatedEvent(Id));
         }
 
-        public void ChangeStatus(TaskStatus status, Guid updatedByUserId)
+        public void ChangeStatus(TaskStatus status)
         {
             if (Status == status)
             {
@@ -60,8 +46,6 @@ namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks
             }
 
             Status = status;
-            UpdatedAt = DateTime.UtcNow;
-            UpdatedByUserId = updatedByUserId;
             AddDomainEvent(new TaskStatusChangedEvent(Id, status));
 
             if (status == TaskStatus.Completed)
@@ -70,27 +54,15 @@ namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks
             }
         }
 
-        public void Delete(Guid deletedByUserId)
+        public void Delete()
         {
             if (DeletedAt is not null)
             {
                 return;
             }
 
-            DeletedAt = DateTime.UtcNow;
-            DeletedByUserId = deletedByUserId;
             Status = TaskStatus.Removed;
             AddDomainEvent(new TaskDeletedEvent(Id));
-        }
-
-        public void AddDomainEvent(IDomainEvent domainEvent)
-        {
-            _domainEvents.Add(domainEvent);
-        }
-
-        public void ClearDomainEvents()
-        {
-            _domainEvents.Clear();
         }
     }
 }

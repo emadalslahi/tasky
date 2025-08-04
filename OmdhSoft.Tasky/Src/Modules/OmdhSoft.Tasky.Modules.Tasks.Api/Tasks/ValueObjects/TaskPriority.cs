@@ -2,7 +2,7 @@ using System;
 
 namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks.ValueObjects;
 
-public readonly record struct TaskPriority
+public sealed record TaskPriority
 {
     public int Value { get; }
 

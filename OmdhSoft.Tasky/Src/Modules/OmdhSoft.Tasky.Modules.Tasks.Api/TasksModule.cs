@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OmdhSoft.Tasky.Modules.Tasks.Api.Database;
+using OmdhSoft.Tasky.Modules.Tasks.Api.Database.Interceptors;
 
 namespace OmdhSoft.Tasky.Modules.Tasks.Api;
 
@@ -32,11 +33,17 @@ public static  class TasksModule
 
         string connectionString = configuration.GetConnectionString(Configs.TaskyDbName)!;
 
-        services.AddDbContext<TaskyDbContext>(options =>
-            options.UseSqlServer(connectionString,
-            options=> options.MigrationsHistoryTable(HistoryRepository.DefaultTableName,Schemas.Tasks))
-            .UseSnakeCaseNamingConvention()
-            );    
+        services.AddScoped<AuditableEntitySaveChangesInterceptor>();
+
+        services.AddDbContext<TaskyDbContext>((sp, options) =>
+        {
+            options
+                .UseSqlServer(
+                    connectionString,
+                    opts => opts.MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Tasks))
+                .UseSnakeCaseNamingConvention()
+                .AddInterceptors(sp.GetRequiredService<AuditableEntitySaveChangesInterceptor>());
+        });
 
         return services;
     }

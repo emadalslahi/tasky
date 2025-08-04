@@ -2,7 +2,7 @@ using System;
 
 namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks.ValueObjects;
 
-public sealed class TaskTitle
+public sealed record TaskTitle
 {
     public string Value { get; }
 
