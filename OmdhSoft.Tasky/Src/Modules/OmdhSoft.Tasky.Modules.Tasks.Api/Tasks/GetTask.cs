@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using OmdhSoft.Tasky.Modules.Tasks.Api.Database;
 using OmdhSoft.Tasky.Modules.Tasks.Api.Tasks.ValueObjects;
 
+#nullable enable
+
 namespace OmdhSoft.Tasky.Modules.Tasks.Api.Tasks
 {
     public static class GetTask
