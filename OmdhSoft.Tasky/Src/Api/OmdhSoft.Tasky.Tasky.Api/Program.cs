@@ -14,11 +14,6 @@ ConfigureMiddleware(app);
 
 app.Run();
 
-/// <summary>
-/// Configures the services for the application.
-/// </summary>
-/// <param name="services">The IServiceCollection to configure.</param>
-/// <param name="configuration">The application configuration.</param>
 void ConfigureServices(IServiceCollection services, IConfiguration configuration)
 {
     // Add API documentation (Swagger)
@@ -36,10 +31,6 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
     services.AddTasksModule(configuration);
 }
 
-/// <summary>
-/// Configures the middleware and request pipeline for the application.
-/// </summary>
-/// <param name="app">The WebApplication to configure.</param>
 void ConfigureMiddleware(WebApplication app)
 {
     if (app.Environment.IsDevelopment())

@@ -17,7 +17,8 @@
 
 
 	<ItemGroup>
-	  <Folder Include="Database\Migrations\" />
+	  <Folder Include="Tasks\Events\" />
+	  <Folder Include="Tasks\ValueObjects\" />
 	</ItemGroup>
 
 </Project>

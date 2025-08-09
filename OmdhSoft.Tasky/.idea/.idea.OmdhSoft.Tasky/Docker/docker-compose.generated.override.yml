@@ -1,0 +1,22 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  omdhsoft.modular.tasky.api:
+    build:
+      context: "A:\\Projects\\DotNet\\taskyModularMonolithic\\tasky\\OmdhSoft.Tasky"
+      dockerfile: "src/api/OmdhSoft.Tasky.Tasky.Api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/OmdhSoft.Tasky.Tasky.Api.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "omdhsofttaskytaskyapi:dev"
+    ports: []
+    volumes:
+    - "A:\\Projects\\DotNet\\taskyModularMonolithic\\tasky\\OmdhSoft.Tasky\\Src\\\
+      Api\\OmdhSoft.Tasky.Tasky.Api:/app:rw"
+    - "A:\\Projects\\DotNet\\taskyModularMonolithic\\tasky\\OmdhSoft.Tasky:/src:rw"
+    - "C:\\Users\\dell\\AppData\\Roaming\\Microsoft\\UserSecrets:/home/app/.microsoft/usersecrets"
+    - "C:\\Users\\dell\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"

@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\OmdhSoft.Tasky.Modules.Tasks.Api\OmdhSoft.Tasky.Modules.Tasks.Api.csproj" />
     <ProjectReference Include="..\..\modules\OmdhSoft.Tasky.Modules.Tasks.Api\OmdhSoft.Tasky.Modules.Tasks.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Tasks\Tasky.Modules.Tasks.Infrastructure\Tasky.Modules.Tasks.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
